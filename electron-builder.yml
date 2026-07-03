@@ -1,0 +1,50 @@
+appId: app.vela.wordprocessor
+productName: Vela
+copyright: Copyright © 2026 Vela
+
+directories:
+  output: dist-electron
+  buildResources: electron/build-resources
+
+files:
+  - electron/**/*
+  - out/**/*
+  - package.json
+  - "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}"
+  - "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}"
+
+asar: true
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  artifactName: Vela-Setup-${version}.${ext}
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Vela
+
+mac:
+  target:
+    - dmg
+    - zip
+  category: public.app-category.productivity
+  artifactName: Vela-${version}-${arch}.${ext}
+
+dmg:
+  artifactName: Vela-${version}.${ext}
+
+linux:
+  target:
+    - AppImage
+    - deb
+  category: Office
+  artifactName: Vela-${version}-${arch}.${ext}
+
+publish: null
